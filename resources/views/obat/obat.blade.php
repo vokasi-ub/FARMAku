@@ -5,7 +5,7 @@
     <!-- Content Header (Page header) -->
     <!-- Content Header (Page header) -->
     <section class="content-header">
-<h1>Data Obat</h1>
+<h1>Data Obat FARMAku</h1>
 <br>
       <div class="box box-danger">
             <div class="box-header with-border">
@@ -30,6 +30,11 @@
           </form>
             <!-- /.box-body -->
           </div>
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Daftar Obat</h3>
+            </div>
+
 
           <div class="box-body">
               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default">
@@ -44,12 +49,8 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Obat</h4>
+                <h4 class="modal-title">Data Obat</h4>
               </div>
-            <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Daftar Obat</h3>
-            </div>
 
                 <form class="form-horizontal" action="/inputdataobat/store" method="post">
                 {{ csrf_field() }}
@@ -113,6 +114,7 @@
                 <th>Nama Obat</th>
                 <th>Harga Obat</th>
                 <th>Stock Obat</th>
+                <th>Aksi</th>
   </tr>
                 <?php $no=1; ?>
              @foreach($data_obat as $data_obat)
@@ -125,7 +127,7 @@
                   <th>{{$data_obat->stockobat}}</th>
                      <th> 
 
-                      <a href="/obatedit/edit/{{ $data_obat->id }}">Edit</a>
+                      <a href="/obatedit/edit/{{ $data_obat->id }}">Edit</a> ||
                      <a href="/hapusobat/destroy/{{ $data_obat->id}}">Hapus</a></td>
                      </tr>
                 @endforeach

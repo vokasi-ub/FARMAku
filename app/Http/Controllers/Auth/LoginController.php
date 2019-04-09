@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/obat';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.

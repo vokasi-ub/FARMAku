@@ -1,4 +1,4 @@
-@extends('')
+@extends('template.master')
 @section('content')
   <!-- Content Wrapper. Contains page content -->
 
@@ -11,13 +11,7 @@
 <h1>Data Pelanggan</h1>
 <br>
      
-    
-
-          <div class="box box-danger">
-            <div class="box-header">
-              <h3 class="box-title">List Data Pelanggan</h3>
-       
-            </div>
+  
 
             <div class="box-body">
                       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
@@ -33,32 +27,32 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Tambah Data Pelanggan</h4>
               </div>
-                <form class="form-horizontal" action="/inputdata/store" method="post">
+                <form class="form-horizontal" action="/inputdatapelanggan/store" method="post">
                 {{ csrf_field() }}
                 <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">idpelanggan</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">ID Pelanggan</label>
 
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="idpelanggan" placeholder="idpelanggan">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">namapelanggan</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Nama Pelanggan</label>
 
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="namapelanggan" placeholder="namapelanggan">
                   </div>
                 </div>
                   <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">jeniskelamin</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Jenis Kelamin</label>
 
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="jeniskelamin" placeholder="jeniskelamin">
                   </div>
                 </div>
                   <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">alamat</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Alamat</label>
 
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="alamat" placeholder="alamat">
@@ -100,7 +94,7 @@
                   <th>{{$data_pelanggan->alamat}}</th>
                      <th> 
  
-            <a href="/pelangganedit/edit/{{ $data_pelanggan->id }}">Edit</a> | <a href="/hapus/destroy/{{ $data_pelanggan->id }}">Hapus</a></td>
+            <a href="/pelangganedit/edit/{{ $data_pelanggan->id }}">Edit</a> | <a href="/hapuspelanggan/destroy/{{ $data_pelanggan->id }}">Hapus</a></td>
     </tr>
   @endforeach
   

@@ -23,21 +23,21 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">ID Pelanggan</label>
                   
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="namapelanggan" value="{{ $p->idpelanggan }}" placeholder="idobat">
+                    <input type="text" class="form-control" name="idpelanggan" value="{{ $p->idpelanggan }}" placeholder="idobat">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Nama Pelanggan</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="jeniskelamin" value="{{ $p->namapelanggan }}" placeholder="namaobat">
+                    <input type="text" class="form-control" name="namapelanggan" value="{{ $p->namapelanggan }}" placeholder="namaobat">
                   </div>
                 </div>
               <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Jenis Kelamin</label>
 
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" name="alamat" value="{{ $p->jeniskelamin }}" placeholder="jeniskelamin">
+                    <input type="text" class="form-control" name="jeniskelamin" value="{{ $p->jeniskelamin }}" placeholder="jeniskelamin">
                   </div>
                 </div>
               <div class="form-group">
@@ -46,6 +46,8 @@
                     <input type="text" class="form-control" name="alamat" value="{{ $p->alamat }}" placeholder="jeniskelamin">
                   </div>
                 </div>
+                </div>
+              
 
 
 

@@ -33,10 +33,20 @@ Route::get('query', 'PelangganController@search');
 Route::resource('pelanggan','PelangganController')->except(['delete','destroy']) ;
 Route::post('/datapelanggan/update','PelangganController@update');
 
-Route::post('/inputdata/store','PelangganController@store');
-//Route::get('/hapus/destroy/{id}', 'PelangganController@destroy');
+Route::post('/inputdatapelanggan/store','PelangganController@store');
+Route::get('/hapuspelanggan/destroy/{id}', 'PelangganController@destroy');
 Route::resource('pelanggan', 'PelangganController');
 Route::get('/pelangganedit/edit/{id}','PelangganController@edit');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('query', 'PenjualanController@search');
+//Route::resource('pelanggan','obatController');
+Route::resource('penjualan','PenjualanController')->except(['delete','destroy']) ;
+Route::post('/datapenjualan/update','PenjualanController@update');
+
+Route::post('/inputdatapenjualan/store','PenjualanController@store');
+Route::get('/hapuspenjualan/destroy/{id}', 'PenjualanController@destroy');
+Route::resource('penjualan', 'PenjualanController');
+Route::get('/penjualanedit/edit/{id}','PenjualanController@edit');

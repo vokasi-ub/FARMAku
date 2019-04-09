@@ -1,11 +1,11 @@
-@extends('')
+@extends('template.master')
 @section('content')
   <!-- Content Wrapper. Contains page content -->
 
     <!-- Content Header (Page header) -->
     <!-- Content Header (Page header) -->
     <section class="content-header">
-<h1>Data Pelanggan</h1>
+<h1>Data Pelanggan FARMAku</h1>
 <br>
       <div class="box box-danger">
             <div class="box-header with-border">
@@ -31,49 +31,51 @@
             <!-- /.box-body -->
           </div>
     
-
-          <div class="box box-danger">
-            <div class="box-header">
-              <h3 class="box-title">List Data Pelanggan</h3>
-       
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Daftar Pelanggan</h3>
             </div>
 
-          
-          <div class="modal modal-info fade" id="modal-info">
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default">
+                Tambah Data
+              </button>
+          <div class="modal modal-info fade" id="modal-default">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Info Modal</h4>
+                  <h4 class="modal-title">Data Pelanggan</h4>
+                  <div class="box box-danger">
+          
               </div>
-                <form class="form-horizontal" action="/inputdata/store" method="post">
+                <form class="form-horizontal" action="/inputdatapelanggan/store" method="post">
                 {{ csrf_field() }}
               <div class="box-body">
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">idpelanggan</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">ID Pelanggan</label>
 
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="idpelanggan" placeholder="idpelanggan">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">namapelanggan</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Nama Pelanggan</label>
 
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="namapelanggan" placeholder="namapelanggan">
                   </div>
                 </div>
                   <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">jeniskelamin</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Jenis Kelamin</label>
 
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="jeniskelamin" placeholder="jeniskelamin">
                   </div>
                 </div>
                   <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">alamat</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Alamat</label>
 
                   <div class="col-sm-10">
                     <input type="text" class="form-control" name="alamat" placeholder="alamat">
@@ -110,21 +112,22 @@
                 <th>Nama Pelanggan</th>
                 <th>Jenis Kelamin</th>
                 <th>Alamat</th>
+                <th>Aksi</th>
   </tr>
                 <?php $no=1; ?>
              @foreach($data_pelanggan as $data_pelanggan)
                  <tr>
                   <th>{{$no++ }} </th>
 
-                  <th>{{$data_pelanggan->id}}</th>
                   <th>{{$data_pelanggan->idpelanggan}}</th>
                   <th>{{$data_pelanggan->namapelanggan}}</th>
                   <th>{{$data_pelanggan->jeniskelamin}}</th>
                   <th>{{$data_pelanggan->alamat}}</th>
                      <th> 
 
-                      <a href="/pelangganedit/edit/{{ $data_pelanggan->idpelanggan }}">Edit</a>
-                     <a href="/hapus/destroy/{{ $data_pelanggan->idpelanggan }}">Hapus</a></td>
+                     
+                      <a href="/pelangganedit/edit/{{ $data_pelanggan->id }}">Edit</a> ||
+                     <a href="/hapuspelanggan/destroy/{{ $data_pelanggan->idpelanggan }}">Hapus</a></td>
                      </tr>
                 @endforeach
                 </tbody>

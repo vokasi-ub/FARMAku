@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\pelanggan;
+use App\penjualan;
 use Illuminate\Support\Facades\DB;
-class PelangganController extends Controller
+class PenjualanController extends Controller
 {
     
 /**
@@ -17,11 +17,20 @@ class PelangganController extends Controller
     {
         //mencari data
         if ($request->has('cari')) {
-            $data_pelanggan = \App\pelanggan::where('namapelanggan','LIKE','%'.$request->cari.'%')->get();
-        } else {
+            $data_penjualan = \App\penjualan::where('idtransaksi','LIKE','%'.$request->cari.'%')->get();
+            $data_obat = DB::table('data_obat')->get();
             $data_pelanggan = DB::table('data_pelanggan')->get();
+        } else {
+            $data_obat = DB::table('data_obat')->get();
+            $data_pelanggan = DB::table('data_pelanggan')->get();
+
+            $data_penjualan = DB::table('data_penjualan')
+            ->join('data_obat', 'data_penjualan.idobat', '=', 'data_obat.idobat')
+            ->join('data_pelanggan', 'data_penjualan.idpelanggan', '=', 'data_pelanggan.idpelanggan')
+            ->select('data_penjualan.*', 'data_obat.*', 'data_pelanggan.*')
+            ->get();
         }
-        return view('pelanggan.pelanggan', compact('data_pelanggan'));
+        return view('penjualan.penjualan', compact('data_penjualan', 'data_obat', 'data_pelanggan'));
     }
     //   public function search(Request $request)
     // {
@@ -49,14 +58,18 @@ class PelangganController extends Controller
     public function store(Request $request)
     {
      // insert data ke table barang
-        DB::table('data_pelanggan')->insert([
+        DB::table('data_penjualan')->insert([
+        'idtransaksi' => $request->idtransaksi,
+        'tglpenjualan' => $request->tglpenjualan,
         'idpelanggan' => $request->idpelanggan,
-        'namapelanggan' => $request->namapelanggan,
-        'jeniskelamin' => $request->jeniskelamin,
-        'alamat' => $request->alamat,
+        'idkaryawan' => $request->idkaryawan,
+        'idobat' => $request->idobat,
+        'jumlahobat' => $request->jumlahobat,
+        'harga' => $request->harga,
+        'totalharga' => $request->totalharga,
     ]);
     // alihkan halaman ke halaman pegawai
-    return redirect('/pelanggan');
+    return redirect('/penjualan');
     }
 
     /**
@@ -68,11 +81,11 @@ class PelangganController extends Controller
     public function show($id)
     {
         //
-        $output = 'Daftar Pelanggan';
-        $data_pelanggan = data_pelanggan::get();
+        $output = 'Daftar Penjualan';
+        $data_penjualan = data_penjualan::get();
         return view('show', array(
-          'data_pelanggan' => $output,
-          'data_pelanggan' => $data_pelanggan
+          'data_penjualan' => $output,
+          'data_penjualan' => $data_penjualan
         ));
     }
 
@@ -84,9 +97,9 @@ class PelangganController extends Controller
      */
     public function edit($id)
     {
-    $data_pelanggan = DB::table('data_pelanggan')->where('id',$id)->get();
+    $data_penjualan = DB::table('data_penjualan')->where('id',$id)->get();
     // passing data pegawai yang didapat ke view edit.blade.php
-    return view('pelanggan.edit',['data_pelanggan' => $data_pelanggan]);
+    return view('penjualan.edit',['data_penjualan' => $data_penjualan]);
     }
 
     /**
@@ -99,15 +112,18 @@ class PelangganController extends Controller
    public function update(Request $request)
 {
     // update data pegawai
-    DB::table('data_pelanggan')->where('id',$request->id)->update([
+    DB::table('data_penjualan')->where('id',$request->id)->update([
+        'idtransaksi' => $request->idtransaksi,
+        'tglpenjualan' => $request->tglpenjualan,
         'idpelanggan' => $request->idpelanggan,
-        'namapelanggan' => $request->namapelanggan,
-        'jeniskelamin' => $request->jeniskelamin,
-        'alamat' => $request->alamat,
-   
+        'idkaryawan' => $request->idkaryawan,
+        'idobat' => $request->idobat,
+        'jumlahobat' => $request->jumlahobat,
+        'harga' => $request->harga,
+        'totalharga' => $request->totalharga,
     ]);
     // alihkan halaman ke halaman pegawai
-    return redirect('/pelanggan');
+    return redirect('/penjualan');
 }
 
     /**
@@ -118,8 +134,8 @@ class PelangganController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('data_pelanggan')->where('idpelanggan', $id)->delete();
-            return redirect('/pelanggan');
+        DB::table('data_penjualan')->where('id', $id)->delete();
+            return redirect('/penjualan');
     }
 
 }

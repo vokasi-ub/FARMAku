@@ -10,12 +10,6 @@
     <section class="content-header">
 <h1>Data Obat</h1>
 <br>
-     
-    
-
-          <div class="box box-danger">
-            <div class="box-header">
-              <h3 class="box-title">List Data Obat</h3>
        
             </div>
 
@@ -33,7 +27,7 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Tambah Data Obat</h4>
               </div>
-                <form class="form-horizontal" action="/inputdata/store" method="post">
+                <form class="form-horizontal" action="/inputdataobat/store" method="post">
                 {{ csrf_field() }}
                 <div class="box-body">
                 <div class="form-group">
