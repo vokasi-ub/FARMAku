@@ -8,5 +8,6 @@ class pelanggan extends Model
 {
     protected $table = 'data_pelanggan';
     protected $fillabel =['id','idpelanggan','namapelanggan','jeniskelamin','alamat'];
+    protected $guarded =[];
     public $timestamps = true;
 }

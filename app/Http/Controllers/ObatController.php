@@ -19,7 +19,7 @@ class ObatController extends Controller
         if ($request->has('cari')) {
             $data_obat = \App\obat::where('namaobat','LIKE','%'.$request->cari.'%')->get();
         } else {
-            $data_obat = DB::table('data_obat')->get();
+            $data_obat = obat::all();
         }
         return view('obat.obat', compact('data_obat'));
     }
@@ -49,12 +49,7 @@ class ObatController extends Controller
     public function store(Request $request)
     {
      // insert data ke table barang
-        DB::table('data_obat')->insert([
-        'idobat' => $request->idobat,
-        'namaobat' => $request->namaobat,
-        'hargaobat' => $request->hargaobat,
-        'stockobat' => $request->stockobat,
-    ]);
+     $obat = obat::create($request->all());
     // alihkan halaman ke halaman pegawai
     return redirect('/obat');
     }

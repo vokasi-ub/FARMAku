@@ -19,7 +19,7 @@ class PelangganController extends Controller
         if ($request->has('cari')) {
             $data_pelanggan = \App\pelanggan::where('namapelanggan','LIKE','%'.$request->cari.'%')->get();
         } else {
-            $data_pelanggan = DB::table('data_pelanggan')->get();
+            $data_pelanggan = pelanggan::all();
         }
         return view('pelanggan.pelanggan', compact('data_pelanggan'));
     }
@@ -49,12 +49,7 @@ class PelangganController extends Controller
     public function store(Request $request)
     {
      // insert data ke table barang
-        DB::table('data_pelanggan')->insert([
-        'idpelanggan' => $request->idpelanggan,
-        'namapelanggan' => $request->namapelanggan,
-        'jeniskelamin' => $request->jeniskelamin,
-        'alamat' => $request->alamat,
-    ]);
+        $pelanggan = pelanggan::create($request->all());
     // alihkan halaman ke halaman pegawai
     return redirect('/pelanggan');
     }

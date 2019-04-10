@@ -8,5 +8,6 @@ class obat extends Model
 {
     protected $table = 'data_obat';
     protected $fillabel =['id','idobat','namaobat','hargaobat','stockobat'];
+    protected $guarded =[];
     public $timestamps = true;
 }
